@@ -13,7 +13,7 @@
 
 <script>
    export default {
-      name: 'NavbarSingle',
+      name: 'NavbarBasic',
       props: ['nama', 'halaman']
    }
 </script>

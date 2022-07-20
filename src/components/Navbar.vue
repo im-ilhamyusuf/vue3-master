@@ -1,13 +1,13 @@
 <template>
    <div class="wrapper">
-      <header class="navbar navbar-expand-md navbar-light d-print-none" :class="peran_warna">
+      <header class="navbar navbar-expand-md navbar-dark d-print-none" :class="peran_warna">
          <div class="container-xl">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                <span class="navbar-toggler-icon"></span>
             </button>
             <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                <a href=".">
-                  <img src="../assets/logo.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                  <img src="../assets/logo-light.png" width="110" height="32" alt="Tabler" class="navbar-brand-image">
                </a>
             </h1>
             <div class="navbar-nav flex-row order-md-last">
@@ -37,38 +37,43 @@
                <div class="container-xl">
                   <ul class="navbar-nav">
 
-                     <NavbarSingle nama="Dasbor" :halaman="halaman" @click="halaman = 'Dasbor'">
+                     <NavbarBasic nama="Dasbor" :halaman="halaman" @click="halaman = 'Dasbor'">
                         <template #icon>
                            <icon-home />
                         </template>
-                     </NavbarSingle>
+                     </NavbarBasic>
 
-                     <NavbarDouble nama="Menu 2" :halaman="halaman">
+                     <NavbarDropdown nama="Data Master" :halaman="halaman">
                         <template #icon>
-                           <icon-apps />
+                           <icon-user-search />
                         </template>
 
                         <template #menu>
-                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 2'">Menu 1</a>
-                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 2'">Menu 2</a>
-                        </template>
-                     </NavbarDouble>
+                           <a href="#" class="dropdown-item" @click="halaman = 'Data Master'">Menu 1</a>
 
-                     <NavbarTriple nama="Menu 3" :halaman="halaman">
+                           <NavbarSubdropdown nama="Mahasiswa">
+                              <template #sub_menu>
+                                 <a href="#" class="dropdown-item" @click="halaman = 'Data Master'">Menu 2</a>
+                                 <a href="#" class="dropdown-item" @click="halaman = 'Data Master'">Menu 3</a>
+                              </template>
+                           </NavbarSubdropdown>
+                        </template>
+                     </NavbarDropdown>
+
+                     <NavbarDropdown2 nama="Menu 3" :halaman="halaman">
                         <template #icon>
                            <icon-apps />
                         </template>
 
                         <template #menu_kiri>
-                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 3'">Menu 1.1</a>
-                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 3'">Menu 2.1</a>
+                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 3'">Menu 1</a>
                         </template>
 
                         <template #menu_kanan>
-                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 3'">Menu 1.2</a>
-                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 3'">Menu 2.2</a>
+                           <a href="#" class="dropdown-item" @click="halaman = 'Menu 3'">Menu 2</a>
                         </template>
-                     </NavbarTriple>
+                     </NavbarDropdown2>
+
                   </ul>
                </div>
             </div>
@@ -78,16 +83,18 @@
 </template>
 
 <script>
-   import NavbarSingle from './navbar/Single.vue'
-   import NavbarDouble from './navbar/Double.vue'
-   import NavbarTriple from './navbar/Triple.vue'
+   import NavbarBasic from './navbar/Basic.vue'
+   import NavbarDropdown from './navbar/Dropdown.vue'
+   import NavbarDropdown2 from './navbar/Dropdown2.vue'
+   import NavbarSubdropdown from './navbar/SubDropdown.vue'
 
    export default {
       name: 'Navbar',
       components: {
-         NavbarSingle,
-         NavbarDouble,
-         NavbarTriple,
+         NavbarBasic,
+         NavbarDropdown,
+         NavbarDropdown2,
+         NavbarSubdropdown
       },
       data() {
          return {
